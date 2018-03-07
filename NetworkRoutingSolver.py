@@ -22,21 +22,13 @@ class NetworkRoutingSolver:
     def getShortestPath( self, destIndex ):
         self.dest = destIndex
 
-        # TODO: RETURN THE SHORTEST PATH FOR destIndex
-        #       INSTEAD OF THE DUMMY SET OF EDGES BELOW
-        #       IT'S JUST AN EXAMPLE OF THE FORMAT YOU'LL 
-        #       NEED TO USE
-
         path_edges = []
         total_length = self.network.nodes[destIndex].dist
 
         node = self.network.nodes[destIndex]
         while node.prev != None:
-            prev_node = node.prev
-            for edge in prev_node.neighbors:
-                if edge.dest == node:
-                    path_edges.append((node.loc, prev_node.loc, '{:.0f}'.format(edge.length)))
-            node = prev_node
+            path_edges.append((node.loc, node.prev.loc, '{:.0f}'.format(node.dist - node.prev.dist)))
+            node = node.prev
         return {'cost':total_length, 'path':path_edges}
 
 
