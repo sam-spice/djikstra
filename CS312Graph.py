@@ -18,6 +18,8 @@ class CS312GraphNode:
         self.node_id   = node_id
         self.loc       = node_loc
         self.neighbors = [] #node_neighbors
+        # I added the prev and dist data members to the node class, dist keeps track of the current distance from
+        # the start node to a given node
         self.prev = None
         self.dist = math.inf
 
